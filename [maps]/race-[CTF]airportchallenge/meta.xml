@@ -1,6 +1,6 @@
 <meta>
     <include resource="ctf-mode"/>
-    <info gamemodes="race" type="map" name="[CTF] Airport Challenge" author="Necktrox" version="1.0.0" description="Catch-the-Flag introduction map on airport objects"></info>
+    <info gamemodes="race" type="map" name="[CTF] Airport Challenge" author="Necktrox" version="1.0.0" description="Capture-the-Flag introduction map on airport objects"></info>
     <map src="race-ctf-airportchallenge.map" dimension="0"></map>
     <settings>
         <setting name="#skins" value='[ &quot;cj&quot; ]'></setting>
