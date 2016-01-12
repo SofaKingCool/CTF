@@ -14,14 +14,7 @@ function onTeamPlayerBaseHit(player, vehicle, playerTeam, baseTeam)
         -- [Flag not in base, Player holds the flag]
         if not baseTeam:getData("in-base") and baseTeam:getData("carrier") == player then
             -- Return flag to home base
-            moveTeamFlagToBase(baseTeam)
-            
-            -- Dispatch event
-            -- if next(LoadedClient) then
-            --     triggerEvent("CTF:onPlayerFlagReturn", player)
-            -- end
-            
-            return
+            return moveTeamFlagToBase(baseTeam)
         end
         
         -- Check if home-flag is in base
@@ -151,6 +144,8 @@ function moveTeamFlagToBase(team)
 end
 
 function dropTeamFlag(player)
+    -- TODO: Check if a player holds his team flag and if we can teleport the flag to its base
+
     -- Check if player holds any flag
     local team = FlagPlayer[player]
     FlagPlayer[player] = nil
