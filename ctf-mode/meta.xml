@@ -1,0 +1,19 @@
+<meta>
+    <!-- Metadata -->
+    <oop>true</oop>
+    <info name="Capture The Flag" author="Necktrox" type="script" version="1.0.0"/>
+    
+    <!-- Clientside -->
+    <script src="client.lua" type="client"/>
+    
+    <!-- Serverside -->
+    <script src="utility.lua"/>
+    <script src="interface.lua"/>
+    <script src="event-logic.lua"/>
+    <script src="team-logic.lua"/>
+    <script src="game-logic.lua"/>
+    
+    <!-- Assets -->
+    <file src="assets/flag.fx"/>
+    <file src="assets/flag.png"/>
+</meta>
