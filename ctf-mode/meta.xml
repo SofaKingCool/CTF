@@ -1,7 +1,7 @@
 <meta>
     <!-- Metadata -->
     <oop>true</oop>
-    <info name="Capture The Flag" author="Necktrox" type="script" version="1.0.0"/>
+    <info name="Capture The Flag" author="Necktrox" type="script" version="1.0.1"/>
     
     <!-- Clientside -->
     <script src="client.lua" type="client"/>

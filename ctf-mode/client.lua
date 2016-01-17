@@ -172,6 +172,21 @@ addEventHandler("onClientElementDestroy", root,
     end
 )
 
+addEventHandler("onClientVehicleEnter", root,
+    function ()
+        if not Running then
+            return
+        end
+        
+        if not source.controller or (not source.blown and source.health > 250) then
+            return
+        end
+        
+        -- Fix vehicle to prevent respawn explosions
+        source:fix()
+    end
+)
+
 function isFlag(element)
     return element.type == "object" and element.model == 2993 and Teams[element:getData("team")]
 end

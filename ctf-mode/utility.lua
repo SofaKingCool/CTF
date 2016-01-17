@@ -69,3 +69,75 @@ end
 function destroyScoreboardColumn()
     callResourceFunction("scoreboard", "scoreboardRemoveColumn", "flagscore")
 end
+
+-- boolean|element getPlayerFreeSpawnpoint( element player, number spaceThreshold )
+function getPlayerFreeSpawnpoint(player, spaceThreshold)
+    -- Check if spawnpoint table is available
+    if not player or not Spawnpoints then
+        return false
+    end
+    
+    -- Get the player's team
+    local playerTeam = player:getTeam()
+    local spawnpointList = playerTeam and Spawnpoints[playerTeam]
+    
+    if not playerTeam or not spawnpointList then
+        return false
+    end
+    
+    -- Pick the first spawnpoint if only one is available 
+    local spawnpointCount = #spawnpointList
+    
+    if spawnpointCount == 1 then
+        return spawnpointList[1]
+    end
+    
+    -- Cache the player list
+    local playerList = Element.getAllByType("player")
+    
+    -- Pick a random spawnpoint if player is alone
+    local playerCount = #playerList
+    
+    if playerCount == 1 then
+        return spawnpointList[math.random(spawnpointCount)]
+    end
+    
+    -- Random start-index for spawnpoints
+    local offset = math.random(spawnpointCount)
+    
+    -- Find the spawnpoint with the highest amount of space
+    local bestSpawnpoint, highestSpace = false, 0
+    
+    for sp = 1, spawnpointCount do
+        -- Create variables for current spawnpoint
+        local spawnpoint = spawnpointList[(sp + offset) % spawnpointCount + 1]
+        local spawnpointPosition = spawnpoint:getPosition()
+        local space = false
+        
+        -- Iterate through players to find the lowest distance (= space)
+        for pl = 1, playerCount do
+            local somebody = playerList[pl]
+            
+            if somebody ~= player then
+                local distance = (spawnpointPosition - somebody.position):getLength()
+                
+                if not space or distance < space then
+                    space = distance
+                end
+            end
+        end 
+        
+        -- Use the spawnpoint when it offers more space
+        if space and space > highestSpace then
+            bestSpawnpoint = spawnpoint
+            highestSpace = space
+            
+            -- Stop iteration if spawnpoint has more space than required
+            if highestSpace >= spaceThreshold then
+                break
+            end
+        end
+    end
+    
+    return bestSpawnpoint
+end

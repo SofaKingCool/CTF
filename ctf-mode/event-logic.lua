@@ -90,22 +90,16 @@ addEventHandler("onPlayerVehicleEnter", root,
         local r, g, b = playerTeam:getColor()
         vehicle:setColor(r, g, b, r, g, b, r, g, b, r, g, b)
         
-        -- Get the spawnpoint list
-        local spawnpointList = Spawnpoints[playerTeam]
-        
-        if not next(spawnpointList) then
-            return
-        end
-        
         -- Move player to a free spawnpoint on his team-side
-        local spawnpoint = spawnpointList[math.random(#spawnpointList)]
+        local spawnpoint = getPlayerFreeSpawnpoint(source, 3)
         
-        if not isElement(spawnpoint) then
+        if not spawnpoint then
             return
         end
         
         vehicle:setPosition(spawnpoint.position)
         vehicle:setRotation(0, 0, spawnpoint:getData("rotZ"))
+        vehicle:setModel(spawnpoint:getData("vehicle"))
     end
 )
 

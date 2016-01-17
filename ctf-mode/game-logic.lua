@@ -88,7 +88,7 @@ function givePlayerTeamFlag(player, vehicle, team)
     flag:attach(vehicle, 0, 0, 0, 0, 0, -90)
     flag:setCollisionsEnabled(false)
     flag:setFrozen(true)
-    flag:setScale(5)
+    flag:setScale(3)
     
     -- Update team data
     team:setData("in-base", false)
