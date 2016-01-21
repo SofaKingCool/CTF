@@ -98,12 +98,12 @@ function onFlagScoreRender()
             
             -- Draw score
             local score = team:getData("flagscore") or 0
-            dxDrawText(score, topX + 1, y + 1 + screenBorderOffset, topX + IconSize, nil, -16777216, 1.0 * Scale, "default-bold", "center", "top", false, false, true)
-            dxDrawText(score, topX, y + screenBorderOffset, topX + IconSize, nil, -1, 1.0 * Scale, "default-bold", "center", "top", false, false, true)
+            dxDrawText(score, topX + 1, y + 1 + screenBorderOffset, topX + IconSize, nil, 0xFF000000, 1.0 * Scale, "default-bold", "center", "top", false, false, true)
+            dxDrawText(score, topX, y + screenBorderOffset, topX + IconSize, nil, 0xFFFFFFFF, 1.0 * Scale, "default-bold", "center", "top", false, false, true)
             
             -- Draw 'Your Team' tag
             if team == myTeam then
-                dxDrawText("Your Team", topX, y + IconSize / 2, nil, nil, -1, 1.0 * Scale, "default-bold", "center", "center", false, false, true, false, true, 270)
+                dxDrawText("Your Team", topX, y + IconSize / 2, nil, nil, 0xFFFFFFFF, 1.0 * Scale, "default-bold", "center", "center", false, false, true, false, true, 270)
             end
             
             -- Increment team position
